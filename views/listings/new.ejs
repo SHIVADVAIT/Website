@@ -1,0 +1,69 @@
+<% layout("/layouts/boilerplate") -%>
+  <body>
+    <h3>Create a New Listing</h3>
+    <form method="POST" action="/listings"  novalidate   class="needs-validation">
+    
+    <div class="mb-3">  <lable for="title" class="form-label">Title</lable>
+        <input name="listing[title]" placeholder="enter title" type="text" class="form-control" required />
+      <div class="valid-feedback">Title looks good</div>
+      </div>
+        <div class="mb-3">
+        <lable for="description" class="form-label">Description</lable>
+        <textarea
+        name="listing[description]"
+        class="form-control"
+        type="text"
+        required >
+      </textarea>
+      <div class="invalid-feedback">Please enter a short Desscription</div>
+
+      </div>
+     
+      <br /><br />
+
+      <div class="mb-3">
+        <lable for="image" class="form-label">Image URL</lable>
+        <input
+        name="listing[image]"
+        placeholder="enter image URL/Link"
+        type="text"
+        class="form-control"
+        
+      />
+
+      </div>
+
+
+     
+
+      <div class="mb-3">
+        <lable for="price" class="form-label">Price</lable>
+
+        <input name="listing[price]" placeholder="enter price"  class="form-control" required
+        />
+
+        <div class="invalid-feedback">Please enter a valid price</div>
+      </div>
+
+      <div class="mb-3">            <lable for="country" class="form-label">Country</lable>   
+        <input name="listing[country]" placeholder="enter country" type="text" class="form-control" required />
+        <div class="invalid-feedback">Please enter a valid country</div>
+
+      </div>
+      
+      <div>
+        <lable for="location" class="form-label">Location</lable>   
+      <input
+        name="listing[location]"
+        placeholder="enter location"
+        type="text"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">Please enter a valid location</div>
+
+    </div>
+      <button>Add</button>
+    </form>
+  </body>
+</html>
