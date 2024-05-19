@@ -43,7 +43,7 @@ module.exports.renderEditForm = async(req, res) => {
   }
 
 
-module.exports.deleteListing=async (req, res) => {
+module.exports.destroyListing=async (req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
@@ -51,7 +51,7 @@ module.exports.deleteListing=async (req, res) => {
   }
 
 
-  module.exports.edit =  async (req, res) => {
+  module.exports.updateListing=  async (req, res) => {
     let { id } = req.params;
     
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
