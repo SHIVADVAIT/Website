@@ -18,17 +18,11 @@ router.get("/", wrapAsync(listingController.index));
 router.get("/new", isLoggedIn,listingController.renderNewForm);
 
 //show route
-router.get("/:id",isLoggedIn, wrapAsync);
+router.get("/:id",isLoggedIn, wrapAsync(listingController.showListing));
 
 //create
 router.post("/", isLoggedIn,validateListing,
-wrapAsync(async(req, res, next) => {
-const newListing = new Listing(req.body.listing);
-  newListing.owner = req.user._id;
-  await newListing.save();
-  req.flash("success","New Listing Created");
-  res.redirect("/listings");
-})
+wrapAsync(listingController.createLisitng)
 );
 //edit
 // app.get("/listings/:id/edit", wrapAsync(async(req, res) => {
@@ -39,32 +33,12 @@ const newListing = new Listing(req.body.listing);
 // }));
 
 //update
-router.put("/:id", isLoggedIn,isOwner,validateListing, wrapAsync(async (req, res) => {
-let { id } = req.params;
+router.put("/:id", isLoggedIn,isOwner,validateListing, wrapAsync(listingController.edit));
 
-await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-req.flash("success","New Listing Updated");
-res.redirect(`/listings/${id}`);
-}));
-
-router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(async(req, res) => {
-  let { id } = req.params;
-  console.log(req.params);
-  const listing = await Listing.findById(id); 
-   if(!listing){
-    req.flash("error","NO is present which you have searched Listing");
-   res.redirect("/listings");
-  }
-  res.render("./listings/edit.ejs", { listing }); 
-}));
+router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
   
   //delete
-  router.delete("/:id", isLoggedIn,isOwner, wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let deletedListing = await Listing.findByIdAndDelete(id);
-    console.log(deletedListing);
-    res.redirect("/listings");
-  }));
+router.delete("/:id", isLoggedIn,isOwner, wrapAsync(listingController.deleteListing));
 
 
   module.exports = router;
