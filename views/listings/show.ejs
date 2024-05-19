@@ -1,38 +1,37 @@
 <% layout("/layouts/boilerplate") -%>
 <%= success %>
-
-    <div class="row">
+<div class="row">
       <div class="col-5 offset-3">
-
-  
     <h3><%= listing.title %></h3>
   </div>
-
     <div class="card col-5 offset-3 show-card listing-card">
       <img src="<%= listing.image %>" class="card-img-top  show-img" alt="listing_image">
       <div class="card-body">
+        <p class="card-text"><u>Owned By</u><%= listing.owner.username %></p>
+
         <p class="card-text">
-        <%= listing.description %> <br>
-        &#8377; <%= listing.price.toLocaleString("en-IN") %>
+        <%= listing.description %> <br> </p>
+        <p class="card-text">&#8377; <%= listing.price.toLocaleString("en-IN") %></p> 
         <br>
-        <%= listing.location %> <br>
-        <%= listing.country %>
-      </p>
+        <p class="card-text"><%= listing.location %></p>
+        <p class="card-text"><%= listing.country %> </p>
+     
       </div>
     </div>
+
+    <% if( currUser && listing.owner._id.equals(currUser._id)) { %>
    <div class = "d-grid gap-2">
   
-    <a href="/listings/<%= listing._id %>/edit"  class="btn gapx btn-primary made">Edit this Listing</a>
-  
+    <a href="/listings/<%= listing._id %>/edit" class="btn gapx btn-primary made">Edit this Listing</a>
 
-   
 <hr>
 <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
     <button class="btn gapy btn-primary made">Delete this listing</button>
   </form>
   
 </div>
-  
+<% } %>
+<% if(currUser) { %>
 <div class="col-8 offset-3 mb-3">
   <hr/>
   <h4>
@@ -49,9 +48,8 @@ Leave a Review
     <div class="invalid-feedback">Please add comments for reviews</div>
   </div>
   <button>Submitt</button>
-
   </form>
-  
+  <%  } %>
 </hr>
 
 
@@ -61,7 +59,7 @@ Leave a Review
 <% for(review of listing.reviews){ %>
   <div class="card col-5 ms-3 mb-3 listing-card">
     <div class="card-body">
-      <h5 class="card-title">Jane Doe</h5>
+      <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
       <p class="card-text"><%= review.rating %></p>stars
     
