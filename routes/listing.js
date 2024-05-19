@@ -33,12 +33,12 @@ wrapAsync(listingController.createLisitng)
 // }));
 
 //update
-router.put("/:id", isLoggedIn,isOwner,validateListing, wrapAsync(listingController.edit));
+router.put("/:id", isLoggedIn,isOwner,validateListing, wrapAsync(listingController.updateListing));
 
 router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
   
   //delete
-router.delete("/:id", isLoggedIn,isOwner, wrapAsync(listingController.deleteListing));
+router.delete("/:id", isLoggedIn,isOwner, wrapAsync(listingController.destroyListing));
 
 
   module.exports = router;
