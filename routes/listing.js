@@ -7,36 +7,18 @@ const Listing = require("../models/listing.js");
 const {isLoggedIn} = require("../middleware.js");
 const {isOwner, validateListing}= require("../middleware.js");
 const review = require("../models/review.js")
-
+const listingController = require("../controllers/listing.js");
 
 
 //show
-router.get("/", wrapAsync(async (req,res)=>{
-  const allListings = await Listing.find({});
-  res.render("listings/index.ejs", {allListings});
-}));
+router.get("/", wrapAsync(listingController.index));
 
 
 //newroute
-router.get("/new", isLoggedIn, (req, res) => {
-  console.log(req.user);
-  res.render("listings/new.ejs");
-});
+router.get("/new", isLoggedIn,listingController.renderNewForm);
 
 //show route
-router.get("/:id",isLoggedIn, wrapAsync(async (req, res) => {
-  let { id } = req.params;
-  console.log(req.params);
-  const listing = await Listing.findById(id).populate({path: "reviews",populate: {
-    path: "author",
-  },}).populate("owner");
-  if(!listing){
-    req.flash("error","NO is present which you have searched Listing");
-    res.redirect("/listings");
-  }
-  console.log(listing);
-  res.render("listings/show.ejs", {listing});
-}));
+router.get("/:id",isLoggedIn, wrapAsync);
 
 //create
 router.post("/", isLoggedIn,validateListing,
