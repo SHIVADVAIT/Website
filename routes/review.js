@@ -8,9 +8,6 @@ const Review = require("../models/review.js");
 const {validateReview, isLoggedIn, isReviewAuthor} = require("../middleware.js");
 const reviewController = require("../controllers/review.js");
 
-
-
-
 router.delete("/:reviewId", isLoggedIn, isReviewAuthor, wrapAsync(reviewController.destroyReview))
 
 
