@@ -10,20 +10,27 @@ const review = require("../models/review.js")
 const listingController = require("../controllers/listing.js");
 
 
-//show
-router.get("/", wrapAsync(listingController.index));
 
+router
+.route("/")
+.get( wrapAsync(listingController.index))
+.post( isLoggedIn,validateListing,
+wrapAsync(listingController.createLisitng)
+)
+
+
+//show
+router.route("/:id")
+.get(isLoggedIn, wrapAsync(listingController.showListing))
+.delete( isLoggedIn,isOwner, wrapAsync(listingController.destroyListing))
+.put(isLoggedIn,isOwner,validateListing, wrapAsync(listingController.updateListing))
 
 //newroute
 router.get("/new", isLoggedIn,listingController.renderNewForm);
 
 //show route
-router.get("/:id",isLoggedIn, wrapAsync(listingController.showListing));
 
 //create
-router.post("/", isLoggedIn,validateListing,
-wrapAsync(listingController.createLisitng)
-);
 //edit
 // app.get("/listings/:id/edit", wrapAsync(async(req, res) => {
 //   let { id } = req.params;
@@ -33,12 +40,11 @@ wrapAsync(listingController.createLisitng)
 // }));
 
 //update
-router.put("/:id", isLoggedIn,isOwner,validateListing, wrapAsync(listingController.updateListing));
+router;
 
 router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
   
-  //delete
-router.delete("/:id", isLoggedIn,isOwner, wrapAsync(listingController.destroyListing));
+
 
 
   module.exports = router;
