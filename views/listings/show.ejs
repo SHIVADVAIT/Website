@@ -27,8 +27,7 @@
 <hr>
 <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
     <button class="btn gapy btn-primary made">Delete this listing</button>
-  </form>
-  
+  </form> 
 </div>
 <% } %>
 <% if(currUser) { %>
@@ -61,10 +60,8 @@ Leave a Review
     <div class="card-body">
       <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
-      <p class="card-text"><%= review.rating %></p>stars
-    
+      <p class="starability-result card-text"> data-rating ="<%=review.rating %>"</p>
     </div>
-
     <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
       <button class="btn btn-sm btn-dark"> Delete </button>
     </form>
