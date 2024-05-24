@@ -31,7 +31,6 @@ router.route("/:id")
 
 
 //show route
-
 //create
 //edit
 // app.get("/listings/:id/edit", wrapAsync(async(req, res) => {
@@ -41,6 +40,7 @@ router.route("/:id")
 //   res.render("listings/edit.ejs", { listing });
 // }));
 
+//newcommit
 //update
 router;
 
