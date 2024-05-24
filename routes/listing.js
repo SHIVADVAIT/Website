@@ -8,7 +8,8 @@ const {isLoggedIn} = require("../middleware.js");
 const {isOwner, validateListing}= require("../middleware.js");
 const review = require("../models/review.js")
 const listingController = require("../controllers/listing.js");
-
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 //newcommit
 
@@ -16,9 +17,12 @@ const listingController = require("../controllers/listing.js");
 router
 .route("/")
 .get( wrapAsync(listingController.index))
-.post( isLoggedIn,validateListing,
-wrapAsync(listingController.createLisitng)
-)
+// .post( isLoggedIn,validateListing,
+// wrapAsync(listingController.createLisitng)
+// )
+.post(upload.single('listing[image]'),(req,res)=>{
+  res.send(req.file);
+})
 
 //newroute
 router.get("/new", isLoggedIn,listingController.renderNewForm);
