@@ -19,13 +19,17 @@
         <%= listing.description %></textarea>
         <div class="invalid-feedback">Proper Description Should be inserted</div>
 </div>
-      
+
+    <div class ="mb-3">
+    Original Listing Image <br/>
+    <img src=" <%= listing.image.url %>" width="300" height="200">
+    </div>
+
       <div class = "mb-3">
         <lable for="image" class="form-label">Upload Listing Image</lable>
-  
       <input name="listing[image]"  type="file" class="form-control" required/>
-
       </div>
+
       <div class="mb-3">
       <lable for="price" class="form-label"></lable>
       <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required/>
