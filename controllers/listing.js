@@ -62,9 +62,8 @@ module.exports.destroyListing=async (req, res) => {
     let url = req.file.path;
     console.log(req.file);
     let filename = req.file.filename;
-    listing.image = {url, filename};
+    listing.image = {url, filename}; 
     await listing.save();
-
     }
     req.flash("success","New Listing Updated");
     res.redirect(`/listings/${id}`);
