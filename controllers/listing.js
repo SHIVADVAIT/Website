@@ -43,7 +43,9 @@ module.exports.renderEditForm = async(req, res) => {
       req.flash("error","NO is present which you have searched Listing");
      res.redirect("/listings");
     }
-    res.render("./listings/edit.ejs", { listing }); 
+   let original  = listing.image.url;
+    original =original.replace("/upload","/upload/h_300,w_250");
+    res.render("./listings/edit.ejs", { listing, original }); 
   }
 
 
