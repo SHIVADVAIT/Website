@@ -114,3 +114,9 @@ body{
 .gapy{
     margin-right: 400px;
 }
+
+#map {
+    height: 400px;
+    width: 80vh;
+
+}
