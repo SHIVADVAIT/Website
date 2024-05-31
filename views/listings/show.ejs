@@ -42,6 +42,20 @@ Leave a Review
     <label for="rating" class="form-label"> Rating </label>
     <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range">
   </div>
+  <fieldset class="starability-basic">
+    <legend>First rating:</legend>
+    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+    <input type="radio" id="first-rate1" name="rating" value="1" />
+    <label for="first-rate1" title="Terrible">1 star</label>
+    <input type="radio" id="first-rate2" name="rating" value="2" />
+    <label for="first-rate2" title="Not good">2 stars</label>
+    <input type="radio" id="first-rate3" name="rating" value="3" />
+    <label for="first-rate3" title="Average">3 stars</label>
+    <input type="radio" id="first-rate4" name="rating" value="4" />
+    <label for="first-rate4" title="Very good">4 stars</label>
+    <input type="radio" id="first-rate5" name="rating" value="5" />
+    <label for="first-rate5" title="Amazing">5 stars</label>
+  </fieldset>
   <div>
     <label for="comment">Comments</label>
     <textarea cols="30" rows="5" id="comment" name="review[comment]" class="form-control" required></textarea>
@@ -62,10 +76,14 @@ Leave a Review
       <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
       <p class="card-text"><%= review.rating %></p>stars
+      <p class="starability-result" data-rating="3">
+        Rated: 3 stars
+      </p>
     
     </div>
 
     <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+      
       <button class="btn btn-sm btn-dark"> Delete </button>
     </form>
   </div>  <% } %>

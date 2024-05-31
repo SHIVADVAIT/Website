@@ -40,7 +40,6 @@ router.get("/new", isLoggedIn,listingController.renderNewForm);
 // }));
 
 //update
-router;
 
 router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
   
