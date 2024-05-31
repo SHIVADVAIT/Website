@@ -74,7 +74,6 @@ Leave a Review
     <div class="card-body">
       <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
-<<<<<<< HEAD
       <p class="card-text"><%= review.rating %></p>stars
       <p class="starability-result" data-rating="3">
         Rated: 3 stars
@@ -82,7 +81,7 @@ Leave a Review
     
 =======
       <p class="starability-result card-text"> data-rating ="<%=review.rating %>"</p>
->>>>>>> origin/main
+
     </div>
     <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
       
