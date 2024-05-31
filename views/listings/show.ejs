@@ -5,7 +5,7 @@
     <h3><%= listing.title %></h3>
   </div>
     <div class="card col-5 offset-3 show-card listing-card">
-      <img src="<%= listing.image %>" class="card-img-top  show-img" alt="listing_image">
+      <img src="<%= listing.image.url %>" class="card-img-top  show-img" alt="listing_image">
       <div class="card-body">
         <p class="card-text"><u>Owned By</u><%= listing.owner.username %></p>
 
@@ -27,8 +27,7 @@
 <hr>
 <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
     <button class="btn gapy btn-primary made">Delete this listing</button>
-  </form>
-  
+  </form> 
 </div>
 <% } %>
 <% if(currUser) { %>
@@ -75,13 +74,16 @@ Leave a Review
     <div class="card-body">
       <h5 class="card-title"><%= review.author.username %></h5>
       <p class="card-text"><%= review.comment %></p>
+<<<<<<< HEAD
       <p class="card-text"><%= review.rating %></p>stars
       <p class="starability-result" data-rating="3">
         Rated: 3 stars
       </p>
     
+=======
+      <p class="starability-result card-text"> data-rating ="<%=review.rating %>"</p>
+>>>>>>> origin/main
     </div>
-
     <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
       
       <button class="btn btn-sm btn-dark"> Delete </button>
