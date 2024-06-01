@@ -20,16 +20,28 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const User = require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 
-main().then(()=>{console.log("connected To Db");})
-.catch(err => console.log(err));
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/newdatabase');
+  await mongoose.connect('mongodb+srv://shivanshsharma9696066821:Shivansh12%40@cluster0.xshpbt2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+  });
+  console.log("Connected to MongoDB");
 }
+
+main().catch(err => console.log(err));
+
+
+// main().then(()=>{console.log("connected To Db");})
+// .catch(err => console.log(err));
+// async function main() {
+//   await mongoose.connect(dbUrl);
+// }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -37,8 +49,19 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
+// const dbrul = 
+const dbUrl ="mongodb+srv://shivanshsharma9696066821:Shivansh12%40@cluster0.xshpbt2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.secret
+  },
+  touchAfter: 24*3600,
+});
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  store,
+  secret: process.env.secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -47,10 +70,13 @@ const sessionOptions = {
     httpOnly: true
   },
 };
+store.on("error", ()=>{
+  console.log("Error in Mongo Session Store", err)
+});
 
 
 app.get("/",(req,res)=>{
-  res.send("Hi, I  am root");
+res.send("Hi, I  am root");
 }
 );
 

@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node":"21.5.0"
+  },
   "name": "project1",
   "version": "1.0.0",
   "main": "index.js",
@@ -12,6 +15,7 @@
   "dependencies": {
     "cloudinary": "^2.2.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
@@ -20,9 +24,9 @@
     "joi": "^17.13.1",
     "method-override": "^3.0.0",
     "mongoose": "^8.3.5",
-    "nodemon": "^3.1.2",
     "multer": "^1.4.5-lts.1",
     "multer-storage-cloudinary": "^4.0.0",
+    "nodemon": "^3.1.2",
     "override": "^0.0.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
