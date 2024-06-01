@@ -52,7 +52,7 @@ Leave a Review
     <label for="first-rate4" title="Very good">4 stars</label>
     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
     <label for="first-rate5" title="Amazing">5 stars</label>
-  </fieldset> -->
+  </fieldset> -->     
   <div>
     <label for="comment">Comments</label>
     <textarea cols="30" rows="5" id="comment" name="review[comment]" class="form-control" required></textarea>
@@ -63,10 +63,8 @@ Leave a Review
   <%  } %>
 </hr>
 
-
-
+<div class="row"></div>
 <h4>All Reviews</h4>
-<div class="row">
 <% for(review of listing.reviews){ %>
   <div class="card col-5 ms-3 mb-3 listing-card">
     <div class="card-body">
@@ -76,8 +74,6 @@ Leave a Review
       <p class="starability-result" data-rating="3">
         Rated: 3 stars
       </p>
-    
-=======
       <p class="starability-result card-text"> data-rating ="<%=review.rating %>"</p>
 
     </div>
@@ -86,5 +82,9 @@ Leave a Review
       <button class="btn btn-sm btn-dark"> Delete </button>
     </form>
   </div><% } %>
+<div class="col-6 offset-3 mb-3">
+<h3>Where you will be</h3>
+<div id="map"></div>
+</div>
 </div>
 </div>
